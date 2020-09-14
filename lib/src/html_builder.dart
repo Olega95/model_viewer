@@ -27,7 +27,7 @@ abstract class HTMLBuilder{
       final String animationName}) {
     final html = StringBuffer(htmlTemplate);
     html.write(
-        '<model-viewer');
+        '<body style="background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue})"><model-viewer');
     html.write(
         ' src="${htmlEscape.convert(src)}" poster="https://biohc.ru/background.png" animation-name="$animationName"');
     html.write(
@@ -81,7 +81,7 @@ abstract class HTMLBuilder{
     // TODO: reveal
     // TODO: shadow-intensity
     // TODO: shadow-softness
-    html.writeln('></model-viewer>');
+    html.writeln('></model-viewer></body>');
     return html.toString();
   }
 }
