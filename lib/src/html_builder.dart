@@ -14,7 +14,7 @@ abstract class HTMLBuilder{
   static String build(
       {final String htmlTemplate = '',
       @required final String src,
-      final Color backgroundColor = const Color(0xFFFFFF),
+      final Color backgroundColor,
       final String alt,
       final bool ar,
       final List<String> arModes,
@@ -31,7 +31,7 @@ abstract class HTMLBuilder{
     html.write(
         ' src="${htmlEscape.convert(src)}" poster="https://biohc.ru/background.png" animation-name="$animationName"');
     html.write(
-        ' style="background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue}); margin-top: 29%; margin-left: ${appStates.isInformationOpen.value ? 20 : -5}%; width: 100%; height: 100%; --poster-color: transparent; --progress-bar-height: 0px"');
+        ' style="background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue}); margin-top: 29%; margin-left: ${appStates.isInformationOpen.value ? 20 : -5}%; width: 80%; height: 80%; --poster-color: transparent; --progress-bar-height: 0px"');
     if (alt != null) {
       html.write(' alt="${htmlEscape.convert(alt)}"');
     }
