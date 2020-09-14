@@ -2,9 +2,13 @@
 
 import 'dart:convert' show htmlEscape;
 
+import 'package:bio_hacking/core/states.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/state_manager.dart';
 
-abstract class HTMLBuilder {
+abstract class HTMLBuilder{
+  static AppStates appStates = Get.put(AppStates());
   HTMLBuilder._();
 
   static String build(
@@ -19,12 +23,15 @@ abstract class HTMLBuilder {
       final int autoRotateDelay,
       final bool autoPlay,
       final bool cameraControls,
-      final String iosSrc}) {
+      final String iosSrc,
+      final String animationName}) {
     final html = StringBuffer(htmlTemplate);
-    html.write('<model-viewer');
-    html.write(' src="${htmlEscape.convert(src)}"');
     html.write(
-        ' style="background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue});"');
+        '<body width="60%" height="65%"><model-viewer');
+    html.write(
+        ' src="${htmlEscape.convert(src)}" poster="https://biohc.ru/background.png" animation-name="$animationName"');
+    html.write(
+        ' style="background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue}); margin-top: 29%; margin-left: ${appStates.isInformationOpen.value ? 20 : -5}%; width: 60%; height: 65%; --poster-color: transparent; --progress-bar-height: 0px"');
     if (alt != null) {
       html.write(' alt="${htmlEscape.convert(alt)}"');
     }
@@ -74,7 +81,7 @@ abstract class HTMLBuilder {
     // TODO: reveal
     // TODO: shadow-intensity
     // TODO: shadow-softness
-    html.writeln('></model-viewer>');
+    html.writeln('></model-viewer></body>');
     return html.toString();
   }
 }
