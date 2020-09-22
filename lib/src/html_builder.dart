@@ -29,7 +29,7 @@ abstract class HTMLBuilder{
     html.write(
         '<body style="background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue})"><model-viewer');
     html.write(
-        ' src="${htmlEscape.convert(src)}" poster="https://biohc.ru/background.png" animation-name="$animationName"');
+        ' src="${htmlEscape.convert(src)}" animation-name="$animationName"');
     html.write(
         ' style="background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue}); margin-top: 29%; margin-left: -5%; width: 80%; height: 80%; --poster-color: transparent; --progress-bar-height: 0px"');
     if (alt != null) {
