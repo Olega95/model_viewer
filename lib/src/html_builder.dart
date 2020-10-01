@@ -31,7 +31,7 @@ abstract class HTMLBuilder{
     html.write(
         ' src="${htmlEscape.convert(src)}" animation-name="$animationName"');
     html.write(
-        ' style="background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue}); margin-top: 29%; margin-left: -5%; width: 70%; height: 70%; --poster-color: transparent; --progress-bar-height: 0px"');
+        ' style="background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue}); margin-top: 29%; margin-left: -5%; width: 100%; height: 100%; --poster-color: transparent; --progress-bar-height: 0px"');
     if (alt != null) {
       html.write(' alt="${htmlEscape.convert(alt)}"');
     }
