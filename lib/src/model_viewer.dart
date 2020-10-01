@@ -30,13 +30,16 @@ class ModelViewer extends StatefulWidget {
       this.autoPlay,
       this.cameraControls,
       this.iosSrc,
-      this.animationName})
+      this.animationName,
+      this.gradient})
       : super(key: key);
 
   /// The background color for the model viewer.
   ///
   /// The theme's [ThemeData.scaffoldBackgroundColor] by default.
   final Color backgroundColor;
+    
+  final List<Color> gradient;
 
   /// The URL or path to the 3D model. This parameter is required.
   /// Only glTF/GLB models are supported.
@@ -194,7 +197,8 @@ class _ModelViewerState extends State<ModelViewer> {
         autoPlay: widget.autoPlay,
         cameraControls: widget.cameraControls,
         iosSrc: widget.iosSrc,
-        animationName: widget.animationName);
+        animationName: widget.animationName,
+        gradient: widget.gradient);
   }
 
   Future<void> _initProxy() async {
