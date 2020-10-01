@@ -137,6 +137,7 @@ class _ModelViewerState extends State<ModelViewer> {
         appStates.url.value = url;
         print('>>>> ModelViewer initializing... <$url>'); // DEBUG
         await webViewController.loadUrl(url);
+        await webViewController.scrollTo(10, 10);
       },
       navigationDelegate: (final NavigationRequest navigation) async {
         //print('>>>> ModelViewer wants to load: <${navigation.url}>'); // DEBUG
