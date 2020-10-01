@@ -32,7 +32,7 @@ abstract class HTMLBuilder{
     html.write(
         ' src="${htmlEscape.convert(src)}" animation-name="$animationName"');
     html.write(
-        ' style="background: linear-gradient(180deg, rgb(${gradient[0].red}, ${gradient[0].green}, ${gradient[0].blue}) 0%, rgb(${gradient[1].red}, ${gradient[1].green}, ${gradient[1].blue}) 100%) ;background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue}); margin-top: 29%; width: 100%; height: 100%; --poster-color: transparent; --progress-bar-height: 0px"');
+        ' style="background: linear-gradient(180deg, rgb(${gradient[0].red}, ${gradient[0].green}, ${gradient[0].blue}) 20%, rgb(${gradient[1].red}, ${gradient[1].green}, ${gradient[1].blue}) 150%) ;background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue}); margin-top: 29%; width: 100%; height: 100%; --poster-color: transparent; --progress-bar-height: 0px"');
     if (alt != null) {
       html.write(' alt="${htmlEscape.convert(alt)}"');
     }
