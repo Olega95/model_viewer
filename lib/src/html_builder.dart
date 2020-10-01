@@ -28,7 +28,7 @@ abstract class HTMLBuilder{
       final List<Color> gradient}) {
     final html = StringBuffer(htmlTemplate);
     html.write(
-        '<body style="${gradient != null ? 'background: linear-gradient(180deg, rgb(${gradient[0].red}, ${gradient[0].green}, ${gradient[0].blue}) 20%, rgb(${gradient[1].red}, ${gradient[1].green}, ${gradient[1].blue}) 150%);' : 'background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue})'}"><model-viewer');
+        '<body style="${gradient != null ? 'background: linear-gradient(180deg, rgb(${gradient[0].red}, ${gradient[0].green}, ${gradient[0].blue}) 0%, rgb(${gradient[1].red}, ${gradient[1].green}, ${gradient[1].blue}) 100%);' : 'background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue})'}"><model-viewer');
     html.write(
         ' src="${htmlEscape.convert(src)}" animation-name="$animationName"');
     html.write(
