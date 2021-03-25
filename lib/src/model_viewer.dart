@@ -5,11 +5,11 @@ import 'dart:io'
     show File, HttpRequest, HttpServer, HttpStatus, InternetAddress, Platform;
 import 'dart:typed_data' show Uint8List;
 
-import 'package:bio_hacking/core/states.dart';
+// import 'package:bio_hacking/core/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_android/android_content.dart' as android_content;
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 import 'package:webview_flutter/platform_interface.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -100,7 +100,7 @@ class _ModelViewerState extends State<ModelViewer> {
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
 
-  AppStates appStates = Get.put(AppStates());
+//   AppStates appStates = Get.put(AppStates());
 
   HttpServer _proxy;
 
@@ -132,12 +132,12 @@ class _ModelViewerState extends State<ModelViewer> {
       javascriptMode: JavascriptMode.unrestricted,
       initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
       onWebViewCreated: (final WebViewController webViewController) async {
-        appStates.webController.value = webViewController;
+//         appStates.webController.value = webViewController;
         _controller.complete(webViewController);
         final host = _proxy.address.address;
         final port = _proxy.port;
         final url = "http://$host:$port/";
-        appStates.url.value = url;
+//         appStates.url.value = url;
         print('>>>> ModelViewer initializing... <$url>'); // DEBUG
         await webViewController.loadUrl(url);
         await webViewController.scrollTo(100, 100);
