@@ -142,6 +142,7 @@ class _ModelViewerState extends State<ModelViewer> {
         final port = _proxy.port;
         final url = "http://$host:$port/";
 //         appStates.url.value = url;
+        controller.currentUrl().then((value) => print(value));
         print('>>>> ModelViewer initializing... <$url>'); // DEBUG
         await webViewController.loadUrl(url);
         await webViewController.scrollTo(100, 100);
