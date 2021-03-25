@@ -26,6 +26,7 @@ class ModelViewer extends StatefulWidget {
       this.arModes,
       this.arScale,
       this.autoRotate,
+      this.onCreated,
       this.autoRotateDelay,
       this.autoPlay,
       this.cameraControls,
@@ -40,6 +41,8 @@ class ModelViewer extends StatefulWidget {
   final Color backgroundColor;
     
   final List<Color> gradient;
+    
+  final Function(WebViewController) onCreated; 
 
   /// The URL or path to the 3D model. This parameter is required.
   /// Only glTF/GLB models are supported.
@@ -133,6 +136,7 @@ class _ModelViewerState extends State<ModelViewer> {
       initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
       onWebViewCreated: (final WebViewController webViewController) async {
 //         appStates.webController.value = webViewController;
+        widget.onCreated(webViewController);
         _controller.complete(webViewController);
         final host = _proxy.address.address;
         final port = _proxy.port;
