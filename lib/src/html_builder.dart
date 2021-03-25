@@ -29,7 +29,7 @@ abstract class HTMLBuilder{
     html.write(
         ' src="${htmlEscape.convert(src)}" animation-name="$animationName"');
     html.write(
-        ' style="background-color: transparent; margin-top: 29%; width: 100%; height: 100%; --poster-color: #fff; --progress-bar-height: 0px"');
+        ' style="background-color: transparent; margin-top: 29%; width: 100%; height: 100%; --poster-color: transparent; --progress-bar-height: 0px"');
     if (alt != null) {
       html.write(' alt="${htmlEscape.convert(alt)}"');
     }
