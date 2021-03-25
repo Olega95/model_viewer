@@ -3,7 +3,7 @@
 import 'dart:convert' show htmlEscape;
 
 import 'package:flutter/material.dart';
-import 'package:get/state_manager.dart';
+// import 'package:get/state_manager.dart';
 
 abstract class HTMLBuilder{
   HTMLBuilder._();
