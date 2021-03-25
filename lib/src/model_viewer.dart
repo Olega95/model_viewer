@@ -136,16 +136,16 @@ class _ModelViewerState extends State<ModelViewer> {
       initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
       onWebViewCreated: (final WebViewController webViewController) async {
 //         appStates.webController.value = webViewController;
-        widget.onCreated(webViewController);
+        
         _controller.complete(webViewController);
         final host = _proxy.address.address;
         final port = _proxy.port;
         final url = "http://$host:$port/";
 //         appStates.url.value = url;
-        webViewController.currentUrl().then((value) => print(value));
         print('>>>> ModelViewer initializing... <$url>'); // DEBUG
         await webViewController.loadUrl(url);
         await webViewController.scrollTo(100, 100);
+        widget.onCreated(webViewController);
       },
       navigationDelegate: (final NavigationRequest navigation) async {
         //print('>>>> ModelViewer wants to load: <${navigation.url}>'); // DEBUG
