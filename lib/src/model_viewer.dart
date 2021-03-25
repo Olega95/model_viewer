@@ -44,7 +44,7 @@ class ModelViewer extends StatefulWidget {
   final List<Color> gradient;
     
   final Function(WebViewController) onCreated; 
-  final Function onPageFinished;
+  final Function(String) onPageFinished;
 
   /// The URL or path to the 3D model. This parameter is required.
   /// Only glTF/GLB models are supported.
@@ -181,8 +181,8 @@ class _ModelViewerState extends State<ModelViewer> {
         print('>>>> ModelViewer began loading: <$url>'); // DEBUG
       },
       onPageFinished: (final String url) {
-        widget.onPageFinished;
         print('>>>> ModelViewer finished loading: <$url>'); // DEBUG
+        widget.onPageFinished(url);
       },
       onWebResourceError: (final WebResourceError error) {
         print(
