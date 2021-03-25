@@ -178,11 +178,11 @@ class _ModelViewerState extends State<ModelViewer> {
         return NavigationDecision.prevent;
       },
       onPageStarted: (final String url) {
-        //print('>>>> ModelViewer began loading: <$url>'); // DEBUG
+        print('>>>> ModelViewer began loading: <$url>'); // DEBUG
       },
       onPageFinished: (final String url) {
         widget.onPageFinished;
-        //print('>>>> ModelViewer finished loading: <$url>'); // DEBUG
+        print('>>>> ModelViewer finished loading: <$url>'); // DEBUG
       },
       onWebResourceError: (final WebResourceError error) {
         print(
