@@ -2,13 +2,10 @@
 
 import 'dart:convert' show htmlEscape;
 
-import 'package:bio_hacking/core/states.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 
 abstract class HTMLBuilder{
-  static AppStates appStates = Get.put(AppStates());
   HTMLBuilder._();
 
   static String build(
