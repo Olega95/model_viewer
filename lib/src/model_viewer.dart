@@ -33,17 +33,20 @@ class ModelViewer extends StatefulWidget {
       this.cameraControls,
       this.iosSrc,
       this.animationName,
-      this.gradient})
+      this.gradient,
+      this.opaque})
       : super(key: key);
 
   /// The background color for the model viewer.
   ///
   /// The theme's [ThemeData.scaffoldBackgroundColor] by default.
   final Color backgroundColor;
-    
+
+  final bool opaque;
+
   final List<Color> gradient;
-    
-  final Function(WebViewController) onCreated; 
+
+  final Function(WebViewController) onCreated;
   final Function(String) onPageFinished;
 
   /// The URL or path to the 3D model. This parameter is required.
@@ -133,12 +136,13 @@ class _ModelViewerState extends State<ModelViewer> {
   @override
   Widget build(final BuildContext context) {
     return WebView(
+      opaque: widget.opaque,
       initialUrl: null,
       javascriptMode: JavascriptMode.unrestricted,
       initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
       onWebViewCreated: (final WebViewController webViewController) async {
 //         appStates.webController.value = webViewController;
-        
+
         _controller.complete(webViewController);
         final host = _proxy.address.address;
         final port = _proxy.port;
@@ -161,8 +165,7 @@ class _ModelViewerState extends State<ModelViewer> {
           // See: https://developers.google.com/ar/develop/java/scene-viewer
           final intent = android_content.Intent(
             action: "android.intent.action.VIEW", // Intent.ACTION_VIEW
-            data:
-                Uri.parse("https://arvr.google.com/scene-viewer/1.0").replace(
+            data: Uri.parse("https://arvr.google.com/scene-viewer/1.0").replace(
               queryParameters: <String, dynamic>{
                 'file': widget.src,
                 'mode': 'ar_only',
