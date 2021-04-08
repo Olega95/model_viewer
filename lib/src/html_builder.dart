@@ -81,7 +81,7 @@ abstract class HTMLBuilder {
     // TODO: shadow-softness
     html.writeln('></model-viewer>');
     html.writeln(
-        '<script>(() => {const modelViewer = document.querySelector("#paused-change-demo");self.setInterval(() => {modelViewer.animationName = modelViewer.animationName === "Armature.002|mixamo.com|Layer0" ?"Armature.006|mixamo.com|Layer0" : "Armature.002|mixamo.com|Layer0";}, 1500.0);})();</script>');
+        '<script>(() => {const modelViewer = document.querySelector("#paused-change-demo");self.setInterval(() => {modelViewer.animationName = modelViewer.animationName === "$animationName" ?"Armature.006|mixamo.com|Layer0" : "$animationName";}, 1500.0);})();</script>');
     html.writeln('</body>');
     return html.toString();
   }
