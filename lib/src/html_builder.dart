@@ -81,7 +81,7 @@ abstract class HTMLBuilder {
     // TODO: shadow-softness
     html.writeln('></model-viewer>');
     html.writeln(
-        '<script>(() => {const modelViewer = document.querySelector("#mainModel");self.setInterval(() => {modelViewer.animationName = "Armature.006|mixamo.com|Layer0";}, 1500.0);})();</script>');
+        '<script>(() => {const modelViewer = document.querySelector(\'#mainModel\');self.setInterval(() => {modelViewer.animationName = \'Armature.006|mixamo.com|Layer0\';}, 1500.0);})();</script>');
     html.writeln('</body>');
     return html.toString();
   }
