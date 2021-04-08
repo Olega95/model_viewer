@@ -26,8 +26,7 @@ abstract class HTMLBuilder {
     final html = StringBuffer(htmlTemplate);
     html.write(
         '<body style="${gradient != null ? 'background: linear-gradient(180deg, rgb(${gradient[0].red}, ${gradient[0].green}, ${gradient[0].blue}) 0%, rgb(${gradient[1].red}, ${gradient[1].green}, ${gradient[1].blue}) 100%);' : 'background-color: rgb(${backgroundColor.red}, ${backgroundColor.green}, ${backgroundColor.blue})'}"><model-viewer');
-    html.write(
-        ' src="${htmlEscape.convert(src)}"');
+    html.write(' src="${htmlEscape.convert(src)}"');
     html.write(
         ' style="background-color: transparent; margin-top: 29%; margin-left: -10%; width: 100%; height: 100%; --poster-color: transparent; --progress-bar-height: 0px"');
     if (alt != null) {
@@ -83,6 +82,7 @@ abstract class HTMLBuilder {
     html.writeln(
         '<script>(() => {const modelViewer = document.querySelector(\'model-viewer\'); modelViewer.animationName = \'$animationName\';});</script>');
     html.writeln('</body>');
+    print(html.toString());
     return html.toString();
   }
 }
