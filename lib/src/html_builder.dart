@@ -78,11 +78,7 @@ abstract class HTMLBuilder {
     // TODO: reveal
     // TODO: shadow-intensity
     // TODO: shadow-softness
-    html.writeln('></model-viewer>');
-    html.writeln(
-        '<script>(() => {const modelViewer = document.querySelector(\'model-viewer\'); modelViewer.animationName = \'$animationName\';});</script>');
-    html.writeln('</body>');
-    print(html.toString());
+    html.writeln('></model-viewer></body>');
     return html.toString();
   }
 }
