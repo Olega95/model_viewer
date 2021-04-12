@@ -86,7 +86,6 @@ class ModelViewer extends StatefulWidget {
   /// number in milliseconds. The default is 3000.
   final int autoRotateDelay;
 
-
   /// If this is true and a model has animations, an animation will
   /// automatically begin to play when this attribute is set (or when the
   /// property is set to true). The default is false.
@@ -137,7 +136,6 @@ class _ModelViewerState extends State<ModelViewer> {
   @override
   Widget build(final BuildContext context) {
     return WebView(
-      
       opaque: widget.opaque,
       initialUrl: null,
       javascriptMode: JavascriptMode.unrestricted,
@@ -220,6 +218,8 @@ class _ModelViewerState extends State<ModelViewer> {
     _proxy.listen((final HttpRequest request) async {
       //print("${request.method} ${request.uri}"); // DEBUG
       //print(request.headers); // DEBUG
+      print(request.uri.path);
+      print(request.uri);
       final response = request.response;
 
       switch (request.uri.path) {
