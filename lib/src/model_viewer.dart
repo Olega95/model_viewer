@@ -258,6 +258,7 @@ class _ModelViewerState extends State<ModelViewer> {
               ..headers.add("Content-Length", data.lengthInBytes.toString())
               ..headers.add("Access-Control-Allow-Origin", "*")
               ..add(data);
+            print(response.toString());
             await response.close();
           }
           break;
