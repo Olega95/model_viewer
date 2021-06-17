@@ -9,9 +9,8 @@ import 'dart:typed_data' show Uint8List;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_android/android_content.dart' as android_content;
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 // import 'package:get/get.dart';
-import 'package:webview_flutter/platform_interface.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 import 'html_builder.dart';
 
@@ -46,7 +45,7 @@ class ModelViewer extends StatefulWidget {
 
   final List<Color> gradient;
 
-  final Function(WebViewController) onCreated;
+  final Function(InAppWebViewController) onCreated;
   final Function(String) onPageFinished;
 
   /// The URL or path to the 3D model. This parameter is required.
@@ -105,8 +104,8 @@ class ModelViewer extends StatefulWidget {
 }
 
 class _ModelViewerState extends State<ModelViewer> {
-  final Completer<WebViewController> _controller =
-      Completer<WebViewController>();
+  final Completer<InAppWebViewController> _controller =
+      Completer<InAppWebViewController>();
 
 //   AppStates appStates = Get.put(AppStates());
 
@@ -114,8 +113,8 @@ class _ModelViewerState extends State<ModelViewer> {
 
   @override
   void initState() {
-    super.initState();
     _initProxy();
+    super.initState();
   }
 
   @override
@@ -135,12 +134,9 @@ class _ModelViewerState extends State<ModelViewer> {
 
   @override
   Widget build(final BuildContext context) {
-    return WebView(
-      opaque: widget.opaque,
-      initialUrl: null,
-      javascriptMode: JavascriptMode.unrestricted,
-      initialMediaPlaybackPolicy: AutoMediaPlaybackPolicy.always_allow,
-      onWebViewCreated: (final WebViewController webViewController) async {
+    return InAppWebView(
+      initialUrl: 'https://yandex.ru/',
+      onWebViewCreated: (final InAppWebViewController webViewController) async {
 //         appStates.webController.value = webViewController;
 
         _controller.complete(webViewController);
@@ -149,17 +145,17 @@ class _ModelViewerState extends State<ModelViewer> {
         final url = "http://$host:$port/";
 //         appStates.url.value = url;
         print('>>>> ModelViewer initializing... <$url>'); // DEBUG
-        await webViewController.loadUrl(url);
+        await webViewController.loadUrl(url: url);
 //         await webViewController.scrollTo(100, 100);
         widget.onCreated(webViewController);
       },
-      navigationDelegate: (final NavigationRequest navigation) async {
-        //print('>>>> ModelViewer wants to load: <${navigation.url}>'); // DEBUG
+      shouldOverrideUrlLoading: (controller, navigation) async {
+        print(navigation);
         if (!Platform.isAndroid) {
-          return NavigationDecision.navigate;
+          return ShouldOverrideUrlLoadingAction.ALLOW;
         }
         if (!navigation.url.startsWith("intent://")) {
-          return NavigationDecision.navigate;
+          return ShouldOverrideUrlLoadingAction.ALLOW;
         }
         try {
           // See: https://developers.google.com/ar/develop/java/scene-viewer
@@ -178,18 +174,20 @@ class _ModelViewerState extends State<ModelViewer> {
         } catch (error) {
           print('>>>> ModelViewer failed to launch AR: $error'); // DEBUG
         }
-        return NavigationDecision.prevent;
+        return ShouldOverrideUrlLoadingAction.CANCEL;
       },
-      onPageStarted: (final String url) {
+      onLoadStart: (controller, url) {
         print('>>>> ModelViewer began loading: <$url>'); // DEBUG
       },
-      onPageFinished: (final String url) {
-        print('>>>> ModelViewer finished loading: <$url>'); // DEBUG
-        widget.onPageFinished(url);
+      onProgressChanged: (controller, progress) async {
+        print(progress);
+        if (progress == 100) {
+          widget.onPageFinished(await controller.getUrl());
+          print('>>>> ModelViewer finished to load');
+        }
       },
-      onWebResourceError: (final WebResourceError error) {
-        print(
-            '>>>> ModelViewer failed to load: ${error.description} (${error.errorType} ${error.errorCode})'); // DEBUG
+      onLoadError: (controller, url, code, message) {
+        print('>>>> ModelViewer failed to load: $message'); // DEBUG
       },
     );
   }

@@ -13,11 +13,7 @@ dependencies:
     sdk: flutter
   dogma: ^0.0.1
   flutter_android: ^0.8.0
-  webview_flutter:
-    git:
-      path: packages/webview_flutter
-      ref: webview-transparent-background
-      url: "git://github.com/crizant/plugins"
+  flutter_inappwebview: ^4.0.0+4
 dev_dependencies:
   flutter_test:
     sdk: flutter
