@@ -8,8 +8,8 @@ import 'dart:typed_data' show Uint8List;
 // import 'package:bio_hacking/core/states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter_android/android_content.dart' as android_content;
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+// import 'package:flutter_android/android_content.dart' as android_content;
 // import 'package:get/get.dart';
 
 import 'html_builder.dart';
@@ -17,9 +17,9 @@ import 'html_builder.dart';
 /// Flutter widget for rendering interactive 3D models.
 class ModelViewer extends StatefulWidget {
   ModelViewer(
-      {Key key,
+      {Key? key,
       this.backgroundColor,
-      @required this.src,
+      required this.src,
       this.alt,
       this.ar,
       this.arModes,
@@ -39,14 +39,14 @@ class ModelViewer extends StatefulWidget {
   /// The background color for the model viewer.
   ///
   /// The theme's [ThemeData.scaffoldBackgroundColor] by default.
-  final Color backgroundColor;
+  final Color? backgroundColor;
 
-  final bool opaque;
+  final bool? opaque;
 
-  final List<Color> gradient;
+  final List<Color>? gradient;
 
-  final Function(InAppWebViewController) onCreated;
-  final Function(String) onPageFinished;
+  final Function(InAppWebViewController)? onCreated;
+  final Function(String?)? onPageFinished;
 
   /// The URL or path to the 3D model. This parameter is required.
   /// Only glTF/GLB models are supported.
@@ -65,39 +65,39 @@ class ModelViewer extends StatefulWidget {
   /// Configures the model with custom text that will be used to describe the
   /// model to viewers who use a screen reader or otherwise depend on additional
   /// semantic context to understand what they are viewing.
-  final String alt;
+  final String? alt;
 
   /// Enable the ability to launch AR experiences on supported devices.
-  final bool ar;
+  final bool? ar;
 
   /// A prioritized list of the types of AR experiences to enable, if available.
-  final List<String> arModes;
+  final List<String>? arModes;
 
   /// Controls the scaling behavior in AR mode in Scene Viewer. Set to "fixed"
   /// to disable scaling of the model, which sets it to always be at 100% scale.
   /// Defaults to "auto" which allows the model to be resized.
-  final String arScale;
+  final String? arScale;
 
   /// Enables the auto-rotation of the model.
-  final bool autoRotate;
+  final bool? autoRotate;
 
   /// Sets the delay before auto-rotation begins. The format of the value is a
   /// number in milliseconds. The default is 3000.
-  final int autoRotateDelay;
+  final int? autoRotateDelay;
 
   /// If this is true and a model has animations, an animation will
   /// automatically begin to play when this attribute is set (or when the
   /// property is set to true). The default is false.
-  final bool autoPlay;
+  final bool? autoPlay;
 
   /// Enables controls via mouse/touch when in flat view.
-  final bool cameraControls;
+  final bool? cameraControls;
 
   /// The URL to a USDZ model which will be used on supported iOS 12+ devices
   /// via AR Quick Look.
-  final String iosSrc;
+  final String? iosSrc;
 
-  final String animationName;
+  final String? animationName;
 
   @override
   State<ModelViewer> createState() => _ModelViewerState();
@@ -109,7 +109,7 @@ class _ModelViewerState extends State<ModelViewer> {
 
 //   AppStates appStates = Get.put(AppStates());
 
-  HttpServer _proxy;
+  HttpServer? _proxy;
 
   @override
   void initState() {
@@ -121,7 +121,7 @@ class _ModelViewerState extends State<ModelViewer> {
   void dispose() {
     super.dispose();
     if (_proxy != null) {
-      _proxy.close(force: true);
+      _proxy!.close(force: true);
       _proxy = null;
     }
   }
@@ -129,52 +129,54 @@ class _ModelViewerState extends State<ModelViewer> {
   @override
   void didUpdateWidget(final ModelViewer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // TODO
   }
 
   @override
   Widget build(final BuildContext context) {
     return InAppWebView(
-      initialUrl: 'https://yandex.ru/',
       onWebViewCreated: (final InAppWebViewController webViewController) async {
 //         appStates.webController.value = webViewController;
 
         _controller.complete(webViewController);
-        final host = _proxy.address.address;
-        final port = _proxy.port;
+        final host = _proxy!.address.address;
+        final port = _proxy!.port;
         final url = "http://$host:$port/";
 //         appStates.url.value = url;
         print('>>>> ModelViewer initializing... <$url>'); // DEBUG
-        await webViewController.loadUrl(url: url);
+        await webViewController.loadUrl(
+          urlRequest: URLRequest(
+            url: Uri.parse(url),
+          ),
+        );
 //         await webViewController.scrollTo(100, 100);
-        widget.onCreated(webViewController);
+        widget.onCreated!(webViewController);
       },
       shouldOverrideUrlLoading: (controller, navigation) async {
         print(navigation);
         if (!Platform.isAndroid) {
-          return ShouldOverrideUrlLoadingAction.ALLOW;
+          return NavigationActionPolicy.ALLOW;
         }
-        if (!navigation.url.startsWith("intent://")) {
-          return ShouldOverrideUrlLoadingAction.ALLOW;
+        if (!navigation.request.url!.isScheme('INTENT')) {
+          return NavigationActionPolicy.ALLOW;
         }
-        try {
-          // See: https://developers.google.com/ar/develop/java/scene-viewer
-          final intent = android_content.Intent(
-            action: "android.intent.action.VIEW", // Intent.ACTION_VIEW
-            data: Uri.parse("https://arvr.google.com/scene-viewer/1.0").replace(
-              queryParameters: <String, dynamic>{
-                'file': widget.src,
-                'mode': 'ar_only',
-              },
-            ),
-            package: "com.google.ar.core",
-            flags: 0x10000000, // Intent.FLAG_ACTIVITY_NEW_TASK,
-          );
-          await intent.startActivity();
-        } catch (error) {
-          print('>>>> ModelViewer failed to launch AR: $error'); // DEBUG
-        }
-        return ShouldOverrideUrlLoadingAction.CANCEL;
+        // try {
+        //   // See: https://developers.google.com/ar/develop/java/scene-viewer
+        //   final intent = android_content.Intent(
+        //     action: "android.intent.action.VIEW", // Intent.ACTION_VIEW
+        //     data: Uri.parse("https://arvr.google.com/scene-viewer/1.0").replace(
+        //       queryParameters: <String, dynamic>{
+        //         'file': widget.src,
+        //         'mode': 'ar_only',
+        //       },
+        //     ),
+        //     package: "com.google.ar.core",
+        //     flags: 0x10000000, // Intent.FLAG_ACTIVITY_NEW_TASK,
+        //   );
+        //   await intent.startActivity();
+        // } catch (error) {
+        //   print('>>>> ModelViewer failed to launch AR: $error'); // DEBUG
+        // }
+        return NavigationActionPolicy.CANCEL;
       },
       onLoadStart: (controller, url) {
         print('>>>> ModelViewer began loading: <$url>'); // DEBUG
@@ -182,7 +184,10 @@ class _ModelViewerState extends State<ModelViewer> {
       onProgressChanged: (controller, progress) async {
         print(progress);
         if (progress == 100) {
-          widget.onPageFinished(await controller.getUrl());
+          String? newUrl;
+          await controller.getUrl().then((value) => newUrl = value.toString());
+
+          widget.onPageFinished!(newUrl);
           print('>>>> ModelViewer finished to load');
         }
       },
@@ -213,7 +218,7 @@ class _ModelViewerState extends State<ModelViewer> {
   Future<void> _initProxy() async {
     final url = Uri.parse(widget.src);
     _proxy = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
-    _proxy.listen((final HttpRequest request) async {
+    _proxy!.listen((final HttpRequest request) async {
       //print("${request.method} ${request.uri}"); // DEBUG
       //print(request.headers); // DEBUG
       print(request.uri.path);
