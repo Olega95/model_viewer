@@ -237,7 +237,7 @@ class _ModelViewerState extends State<ModelViewer> {
 
         case '/model-viewer.js':
           final code = await rootBundle
-              .loadString('packages/model_viewer/etc/assets/model-viewer.min.js');
+              .loadString('packages/model_viewer/etc/assets/model-viewer.js');
           response
             ..statusCode = HttpStatus.ok
             ..headers
