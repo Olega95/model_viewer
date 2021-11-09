@@ -11,7 +11,6 @@ abstract class HTMLBuilder {
   static String build(
       {final String htmlTemplate = '',
       required final String src,
-      final Color? backgroundColor,
       final String? alt,
       final bool? ar,
       final List<String>? arModes,
@@ -21,8 +20,7 @@ abstract class HTMLBuilder {
       final bool? autoPlay,
       final bool? cameraControls,
       final String? iosSrc,
-      final String? animationName,
-      final List<Color>? gradient}) {
+      final String? animationName}) {
     final html = StringBuffer(htmlTemplate);
     html.write(
         '<script src="https://unpkg.com/focus-visible@5.1.0/dist/focus-visible.js"></script>');
