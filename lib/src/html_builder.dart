@@ -27,7 +27,7 @@ abstract class HTMLBuilder {
     html.write(
         '<script src="https://unpkg.com/focus-visible@5.1.0/dist/focus-visible.js"></script>');
     html.write(
-        '<body style="${gradient != null ? 'background: linear-gradient(180deg, rgb(${gradient[0].red}, ${gradient[0].green}, ${gradient[0].blue}) 0%, rgb(${gradient[1].red}, ${gradient[1].green}, ${gradient[1].blue}) 100%);' : 'background-color: rgb(${backgroundColor!.red}, ${backgroundColor.green}, ${backgroundColor.blue})'}"><model-viewer');
+        '<body><model-viewer');
     html.write(' src="${htmlEscape.convert(src)}"');
     html.write(
         ' style="background-color: transparent; outline: none; margin-top: 29%; margin-left: -10%; width: 100%; height: 100%; --poster-color: transparent; --progress-bar-height: 0px"');
