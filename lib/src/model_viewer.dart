@@ -136,7 +136,7 @@ class _ModelViewerState extends State<ModelViewer> {
     return InAppWebView(
       onWebViewCreated: (final InAppWebViewController webViewController) async {
 //         appStates.webController.value = webViewController;
-
+        webViewController.setOptions(options: InAppWebViewGroupOptions(crossPlatform: InAppWebViewOptions(transparentBackground: true)));
         _controller.complete(webViewController);
         final host = _proxy!.address.address;
         final port = _proxy!.port;
