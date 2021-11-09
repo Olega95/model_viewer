@@ -200,7 +200,6 @@ class _ModelViewerState extends State<ModelViewer> {
   String _buildHTML(final String htmlTemplate) {
     return HTMLBuilder.build(
         htmlTemplate: htmlTemplate,
-        backgroundColor: widget.backgroundColor,
         src: '/model',
         alt: widget.alt,
         ar: widget.ar,
@@ -211,8 +210,7 @@ class _ModelViewerState extends State<ModelViewer> {
         autoPlay: widget.autoPlay,
         cameraControls: widget.cameraControls,
         iosSrc: widget.iosSrc,
-        animationName: widget.animationName,
-        gradient: widget.gradient);
+        animationName: widget.animationName,);
   }
 
   Future<void> _initProxy() async {
