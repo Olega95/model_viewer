@@ -68,7 +68,7 @@ abstract class HTMLBuilder {
     if (iosSrc != null) {
       html.write(' ios-src="${htmlEscape.convert(iosSrc)}"');
     }
-    // TODO: max-camera-orbit
+    html.write(' min-camera-orbit="-infinity 80deg auto" max-camera-orbit="-infinity 80deg auto"')
     // TODO: max-field-of-view
     // TODO: min-camera-orbit
     // TODO: min-field-of-view
