@@ -25,8 +25,8 @@ abstract class HTMLBuilder {
     html.write(
         '<script src="https://unpkg.com/focus-visible@5.1.0/dist/focus-visible.js"></script>');
     html.write(
-        '<body><model-viewer disable-zoom');
-    html.write(' src="${htmlEscape.convert(src)}"');
+        '<body><model-viewer');
+    html.write(' disable-zoom src="${htmlEscape.convert(src)}"');
     html.write(
         ' style="background-color: transparent; outline: none; margin-top: 29%; margin-left: -10%; width: 100%; height: 100%; --poster-color: transparent; --progress-bar-height: 0px"');
     if (alt != null) {
