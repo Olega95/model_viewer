@@ -60,7 +60,7 @@ abstract class HTMLBuilder {
       html.write(' camera-controls');
     }
     
-    html.write('$poster');
+    html.write(' poster="$poster"');
     // TODO: camera-orbit
     // TODO: camera-target
     // TODO: environment-image
