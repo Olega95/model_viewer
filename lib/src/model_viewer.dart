@@ -33,7 +33,8 @@ class ModelViewer extends StatefulWidget {
       this.iosSrc,
       this.animationName,
       this.gradient,
-      this.opaque})
+      this.opaque,
+      this.poster})
       : super(key: key);
 
   /// The background color for the model viewer.
@@ -47,6 +48,8 @@ class ModelViewer extends StatefulWidget {
 
   final Function(InAppWebViewController)? onCreated;
   final Function(String?)? onPageFinished;
+  
+  final String? poster;
 
   /// The URL or path to the 3D model. This parameter is required.
   /// Only glTF/GLB models are supported.
@@ -210,7 +213,8 @@ class _ModelViewerState extends State<ModelViewer> {
         autoPlay: widget.autoPlay,
         cameraControls: widget.cameraControls,
         iosSrc: widget.iosSrc,
-        animationName: widget.animationName,);
+        animationName: widget.animationName,
+        poster: widget.poster,);
   }
 
   Future<void> _initProxy() async {
