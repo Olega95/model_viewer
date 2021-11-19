@@ -22,6 +22,7 @@ abstract class HTMLBuilder {
       final bool? autoPlay,
       final bool? cameraControls,
       final String? iosSrc,
+      final String? poster,
       final String? animationName}) {
     final html = StringBuffer(htmlTemplate);
     html.write(
@@ -58,6 +59,8 @@ abstract class HTMLBuilder {
     if (cameraControls ?? false) {
       html.write(' camera-controls');
     }
+    
+    html.write('$poster');
     // TODO: camera-orbit
     // TODO: camera-target
     // TODO: environment-image
