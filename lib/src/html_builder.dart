@@ -5,6 +5,8 @@ import 'dart:convert' show htmlEscape;
 import 'package:flutter/material.dart';
 // import 'package:get/state_manager.dart';
 
+//margin-top: 29%; margin-left: -10%; 
+
 abstract class HTMLBuilder {
   HTMLBuilder._();
 
@@ -28,7 +30,7 @@ abstract class HTMLBuilder {
         '<body><model-viewer');
     html.write(' disable-zoom src="${htmlEscape.convert(src)}"');
     html.write(
-        ' style="background-color: transparent; outline: none; margin-top: 29%; margin-left: -10%; width: 100%; height: 100%; --poster-color: transparent; --progress-bar-height: 0px"');
+        ' style="background-color: transparent; outline: none; width: 100%; height: 100%; --poster-color: transparent; --progress-bar-height: 0px"');
     if (alt != null) {
       html.write(' alt="${htmlEscape.convert(alt)}"');
     }
