@@ -73,7 +73,7 @@ abstract class HTMLBuilder {
     if (iosSrc != null) {
       html.write(' ios-src="${htmlEscape.convert(iosSrc)}"');
     }
-    html.write(' min-camera-orbit="-infinity 80deg 150m" max-camera-orbit="-infinity 80deg 150m"');
+    html.write(' min-camera-orbit="-infinity 80deg 80m" max-camera-orbit="-infinity 80deg 80m"');
     // TODO: max-field-of-view
     // TODO: min-camera-orbit
     // TODO: min-field-of-view
