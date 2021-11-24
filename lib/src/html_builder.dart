@@ -29,7 +29,7 @@ abstract class HTMLBuilder {
         '<script src="https://unpkg.com/focus-visible@5.1.0/dist/focus-visible.js"></script>');
     html.write(
         '<body><model-viewer');
-    html.write(' disable-zoom loading="eager" src="${htmlEscape.convert(src)}" animation-name="$animationName"');
+    html.write(' disable-zoom seamless-poster loading="eager" src="${htmlEscape.convert(src)}" animation-name="$animationName"');
     html.write(
         ' style="background-color: transparent; outline: none; width: 100%; height: 100%; --poster-color: transparent; --progress-bar-height: 0px"');
     if (alt != null) {
@@ -73,7 +73,7 @@ abstract class HTMLBuilder {
     if (iosSrc != null) {
       html.write(' ios-src="${htmlEscape.convert(iosSrc)}"');
     }
-    html.write(' min-camera-orbit="-infinity 80deg auto" max-camera-orbit="-infinity 80deg auto"');
+    html.write(' min-camera-orbit="-infinity 80deg 150m" max-camera-orbit="-infinity 80deg 150m"');
     // TODO: max-field-of-view
     // TODO: min-camera-orbit
     // TODO: min-field-of-view
