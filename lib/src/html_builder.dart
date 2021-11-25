@@ -25,7 +25,8 @@ abstract class HTMLBuilder {
       final String? poster,
       final String? animationName,
       final double? shadowIntensity,
-      final double? shadowSoftness}) {
+      final double? shadowSoftness,
+      final double? zoom}) {
     final html = StringBuffer(htmlTemplate);
     html.write(
         '<script src="https://unpkg.com/focus-visible@5.1.0/dist/focus-visible.js"></script>');
@@ -76,8 +77,8 @@ abstract class HTMLBuilder {
       html.write(' ios-src="${htmlEscape.convert(iosSrc)}"');
     }
     
-//      min-camera-orbit="-infinity 80deg 350m" max-camera-orbit="-infinity 80deg 350m"
-    html.write(' camera-orbit="-infinity 80deg 200m"');
+//      
+    html.write(' min-camera-orbit="-infinity 80deg ${zoom}m" max-camera-orbit="-infinity 80deg ${zoom}m"');
     // TODO: max-field-of-view
     // TODO: min-camera-orbit
     // TODO: min-field-of-view
