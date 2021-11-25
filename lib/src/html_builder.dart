@@ -23,7 +23,9 @@ abstract class HTMLBuilder {
       final bool? cameraControls,
       final String? iosSrc,
       final String? poster,
-      final String? animationName}) {
+      final String? animationName,
+      final double? shadowIntensity,
+      final double? shadowSoftness}) {
     final html = StringBuffer(htmlTemplate);
     html.write(
         '<script src="https://unpkg.com/focus-visible@5.1.0/dist/focus-visible.js"></script>');
@@ -83,6 +85,12 @@ abstract class HTMLBuilder {
     // TODO: loading
     // TODO: quick-look-browsers
     // TODO: reveal
+    if (shadowIntensity != null) {
+      html.write(' shadow-intensity="$shadowIntensity"');
+    }
+    if (shadowSoftness != null) {
+      html.write(' shadow-softness="$shadowSoftness"');
+    }
     // TODO: shadow-intensity
     // TODO: shadow-softness
     html.writeln('></model-viewer></body>');
