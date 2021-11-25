@@ -34,7 +34,7 @@ class ModelViewer extends StatefulWidget {
       this.animationName,
       this.gradient,
       this.opaque,
-      this.poster
+      this.poster,
       this.shadowIntensity,
       this.shadowSoftness})
       : super(key: key);
