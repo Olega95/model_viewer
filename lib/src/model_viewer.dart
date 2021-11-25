@@ -224,7 +224,7 @@ class _ModelViewerState extends State<ModelViewer> {
         animationName: widget.animationName,
         poster: widget.poster,
         shadowIntensity: widget.shadowIntensity,
-        shadowSoftness: widget.shadowSoftness
+        shadowSoftness: widget.shadowSoftness,
         zoom: widget.zoom);
   }
 
