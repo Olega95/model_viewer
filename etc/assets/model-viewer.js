@@ -59994,7 +59994,7 @@ class GLTFInstance {
              if (!object.isMesh) {
                  return;
              }
-             console.log(object.name);
+             
              const mesh = object;
              const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
              materials.forEach(material => {
@@ -60079,6 +60079,9 @@ class ModelViewerGLTFInstance extends GLTFInstance {
          }
          if (!node.isMesh) {
              return;
+         }
+         if (node.name == 'vest_low') {
+             node.visible = false;
          }
          node.castShadow = true;
          const mesh = node;
