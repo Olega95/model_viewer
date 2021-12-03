@@ -57341,7 +57341,7 @@ class Model extends Object3D {
  /**
   * Creates a model.
   */
- constructor() {
+ constructor(modelViewElement) {
      super();
      this[_a$5] = null;
      this[_b$3] = null;
@@ -57360,6 +57360,7 @@ class Model extends Object3D {
      this.modelContainer.name = 'ModelContainer';
      this.add(this.modelContainer);
      this.mixer = new AnimationMixer(this.modelContainer);
+     this.modelViewElement = modelViewElement;
  }
  get currentGLTF() {
      return this[$currentGLTF];
@@ -57433,6 +57434,7 @@ class Model extends Object3D {
      this.userData.url = url;
      this.updateFraming();
      this.dispatchEvent({ type: 'model-load', url });
+     this.modelViewElement.meshes = gltf.scene;
  }
  set animationTime(value) {
      this.mixer.setTime(value);
@@ -57706,7 +57708,7 @@ class ModelScene extends Scene {
      this.name = 'ModelScene';
      this.element = element;
      this.canvas = canvas;
-     this.model = new Model();
+     this.model = new Model(element);
      // These default camera values are never used, as they are reset once the
      // model is loaded and framing is computed.
      this.camera = new PerspectiveCamera(45, 1, 0.1, 100);
@@ -60080,10 +60082,6 @@ class ModelViewerGLTFInstance extends GLTFInstance {
          if (!node.isMesh) {
              return;
          }
-
-         if (node.name == 'suit_low_2') {
-            node.visible = false;
-        }
          node.castShadow = true;
          const mesh = node;
          let transparent = false;
@@ -61617,6 +61615,7 @@ class ModelViewerElementBase extends UpdatingElement {
      super();
      this.alt = null;
      this.src = null;
+     this.meshesObject = null;
      this[_a$a] = false;
      this[_b$8] = false;
      this[_c$2] = 0;
@@ -61767,6 +61766,18 @@ class ModelViewerElementBase extends UpdatingElement {
  /** @export */
  get modelIsVisible() {
      return this[$getModelIsVisible]();
+ }
+ get meshes() {
+     return this.meshesObject;
+ }
+ set meshes(scenes) {
+    let scene, mesh;
+    this.meshesObject = {};
+    for(scene of scenes.children) {
+        for (mesh of scene.children) {
+            (mesh.type === "SkinnedMesh") && (this.meshesObject[mesh.name] = mesh);
+        }
+    }
  }
  connectedCallback() {
      super.connectedCallback && super.connectedCallback();
