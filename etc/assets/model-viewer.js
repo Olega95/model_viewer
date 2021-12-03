@@ -60080,9 +60080,10 @@ class ModelViewerGLTFInstance extends GLTFInstance {
          if (!node.isMesh) {
              return;
          }
-         if (node.name == 'vest_low') {
-             node.visible = false;
-         }
+
+         if (node.name == 'suit_low_2') {
+            node.visible = false;
+        }
          node.castShadow = true;
          const mesh = node;
          let transparent = false;
@@ -62077,16 +62078,7 @@ const AnimationMixin = (ModelViewerElement) => {
      [$changeAnimation]() {
          const { model } = this[$scene];
          model.playAnimation(this.animationName, this.animationCrossfadeDuration / MILLISECONDS_PER_SECOND);
-         model.traverse((object) => {
-            if (object.name == 'vest_low') {
-                object.visible = false;
-            }
-            object.traverse((child) => {
-                if (child.name == 'vest_low') {
-                    child.visible = false;
-                }
-            });
-         });
+         
          // If we are currently paused, we need to force a render so that
          // the model updates to the first frame of the new animation
          if (this[$paused]) {
@@ -118825,7 +118817,7 @@ const SceneGraphMixin = (ModelViewerElement) => {
      /** @export */
      get model() {
          const kernel = this[$modelKernel];
-         return kernel ? kernel.model : undefined;
+         return scene.object;
      }
      connectedCallback() {
          super.connectedCallback();
