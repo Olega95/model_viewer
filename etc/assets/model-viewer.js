@@ -62077,6 +62077,16 @@ const AnimationMixin = (ModelViewerElement) => {
      [$changeAnimation]() {
          const { model } = this[$scene];
          model.playAnimation(this.animationName, this.animationCrossfadeDuration / MILLISECONDS_PER_SECOND);
+         model.traverse((object) => {
+            if (object.name == 'vest_low') {
+                object.visible = false;
+            }
+            object.traverse((child) => {
+                if (child.name == 'vest_low') {
+                    child.visible = false;
+                }
+            });
+         });
          // If we are currently paused, we need to force a render so that
          // the model updates to the first frame of the new animation
          if (this[$paused]) {
@@ -118905,6 +118915,7 @@ const SceneGraphMixin = (ModelViewerElement) => {
              if (model == null) {
                  return reject('Model missing or not yet loaded');
              }
+             
              // Defaults
              const opts = {
                  binary: true,
