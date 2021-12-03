@@ -59994,9 +59994,7 @@ class GLTFInstance {
              if (!object.isMesh) {
                  return;
              }
-             if (object.name == 'vest_low') {
-                 object.visible = false;
-             }
+             console.log(object.name);
              const mesh = object;
              const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
              materials.forEach(material => {
