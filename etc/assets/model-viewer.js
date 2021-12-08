@@ -61771,11 +61771,17 @@ class ModelViewerElementBase extends UpdatingElement {
      return this.meshesObject;
  }
  set meshes(scenes) {
-    let scene, mesh;
+    let scene, mesh, clothes = this.clothes.split(","), dressedClothes = {}, partOfClothes;
+    for(partOfClothes of clothes)
+        dressedClothes[partOfClothes] = true;
     this.meshesObject = {};
     for(scene of scenes.children) {
         for (mesh of scene.children) {
             (mesh.type === "SkinnedMesh") && (this.meshesObject[mesh.name] = mesh);
+            mesh.type !== "Bone" &&
+            mesh.name !== "male1" &&
+            !dressedClothes[mesh.name] &&
+            (mesh.visible = false);
         }
     }
  }
@@ -61981,6 +61987,9 @@ __decorate([
 __decorate([
  property({ type: String })
 ], ModelViewerElementBase.prototype, "src", void 0);
+__decorate([
+    property({ type: String })
+   ], ModelViewerElementBase.prototype, "clothes", void 0);
 
 /* @license
 * Copyright 2019 Google LLC. All Rights Reserved.
