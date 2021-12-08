@@ -37,7 +37,8 @@ class ModelViewer extends StatefulWidget {
       this.poster,
       this.shadowIntensity,
       this.shadowSoftness,
-      this.zoom})
+      this.zoom,
+      this.clothes})
       : super(key: key);
 
   /// The background color for the model viewer.
@@ -58,6 +59,7 @@ class ModelViewer extends StatefulWidget {
   final double? shadowSoftness;
     
   final double? zoom;
+  final String? clothes;
 
   /// The URL or path to the 3D model. This parameter is required.
   /// Only glTF/GLB models are supported.
@@ -225,7 +227,8 @@ class _ModelViewerState extends State<ModelViewer> {
         poster: widget.poster,
         shadowIntensity: widget.shadowIntensity,
         shadowSoftness: widget.shadowSoftness,
-        zoom: widget.zoom);
+        zoom: widget.zoom,
+        clothes: widget.clothes);
   }
 
   Future<void> _initProxy() async {
