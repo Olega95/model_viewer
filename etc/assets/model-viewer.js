@@ -60755,7 +60755,7 @@ class EnvironmentScene extends Scene {
      geometry.deleteAttribute('uv');
      const roomMaterial = new MeshStandardMaterial({ metalness: 0, side: BackSide });
      const boxMaterial = new MeshStandardMaterial({ metalness: 0 });
-     const mainLight = new PointLight(0xffffff, 500.0, 28, 2);
+     const mainLight = new PointLight(0x000000, 500.0, 28, 2);
      mainLight.position.set(0.418, 16.199, 0.300);
      this.add(mainLight);
      const room = new Mesh(geometry, roomMaterial);
