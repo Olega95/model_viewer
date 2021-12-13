@@ -28233,7 +28233,7 @@ function SpriteMaterial( parameters ) {
 
  this.type = 'SpriteMaterial';
 
- this.color = new Color( 0xffffff );
+ this.color = new Color( 0x000000 );
 
  this.map = null;
 
@@ -53132,7 +53132,7 @@ var GLTFLoader = ( function () {
      var lightDef = this.lightDefs[ lightIndex ];
      var lightNode;
 
-     var color = new Color( 0x000000 );
+     var color = new Color( 0xffffff );
      if ( lightDef.color !== undefined ) color.fromArray( lightDef.color );
 
      var range = lightDef.range !== undefined ? lightDef.range : 0;
