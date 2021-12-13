@@ -1317,7 +1317,7 @@ padding: 0;
 background-size: contain;
 background-repeat: no-repeat;
 background-position: center;
-background-color: var(--poster-color, #fff);
+background-color: var(--poster-color, #000);
 background-image: var(--poster-image, none);
 }
 
@@ -1336,7 +1336,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background: var(--progress-mask, #fff);
+background: var(--progress-mask, #000);
 transition: opacity 0.3s;
 opacity: 0.2;
 }
@@ -28233,7 +28233,7 @@ function SpriteMaterial( parameters ) {
 
  this.type = 'SpriteMaterial';
 
- this.color = new Color( 0x000000 );
+ this.color = new Color( 0xffffff );
 
  this.map = null;
 
