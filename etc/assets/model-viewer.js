@@ -1317,7 +1317,7 @@ padding: 0;
 background-size: contain;
 background-repeat: no-repeat;
 background-position: center;
-background-color: var(--poster-color, #000);
+background-color: var(--poster-color, rgba(0, 0, 0, 0));
 background-image: var(--poster-image, none);
 }
 
@@ -1336,7 +1336,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background: var(--progress-mask, #000);
+background: var(--progress-mask, rgba(0, 0, 0, 0));
 transition: opacity 0.3s;
 opacity: 0.2;
 }
