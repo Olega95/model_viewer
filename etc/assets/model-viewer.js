@@ -53132,7 +53132,7 @@ var GLTFLoader = ( function () {
      var lightDef = this.lightDefs[ lightIndex ];
      var lightNode;
 
-     var color = new Color( 0xffffff );
+     var color = new Color( 0x000000 );
      if ( lightDef.color !== undefined ) color.fromArray( lightDef.color );
 
      var range = lightDef.range !== undefined ? lightDef.range : 0;
