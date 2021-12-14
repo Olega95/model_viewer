@@ -17,7 +17,7 @@ import 'html_builder.dart';
 /// Flutter widget for rendering interactive 3D models.
 class ModelViewer extends StatefulWidget {
   ModelViewer(
-      {Key? key,
+      {this.key,
       this.backgroundColor,
       required this.src,
       this.alt,
@@ -49,6 +49,8 @@ class ModelViewer extends StatefulWidget {
   final bool? opaque;
 
   final List<Color>? gradient;
+    
+  final Key? key;
 
   final Function(InAppWebViewController)? onCreated;
   final Function(String?)? onPageFinished;
@@ -147,6 +149,7 @@ class _ModelViewerState extends State<ModelViewer> {
   @override
   Widget build(final BuildContext context) {
     return InAppWebView(
+        key: widget.key,
       onWebViewCreated: (final InAppWebViewController webViewController) async {
 //         appStates.webController.value = webViewController;
         webViewController.setOptions(options: InAppWebViewGroupOptions(crossPlatform: InAppWebViewOptions(transparentBackground: true)));
