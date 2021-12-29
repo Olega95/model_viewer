@@ -64,7 +64,7 @@ abstract class HTMLBuilder {
       html.write(' camera-controls');
     }
     
-    html.write(' poster="./etc/assets/dna-loader.gif"');
+    html.write(' poster="$poster"');
     // TODO: camera-orbit
     // TODO: camera-target
     // TODO: environment-image
