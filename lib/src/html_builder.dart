@@ -33,7 +33,7 @@ abstract class HTMLBuilder {
         '<script src="https://unpkg.com/focus-visible@5.1.0/dist/focus-visible.js"></script>');
     html.write(
         '<body><model-viewer');
-    html.write(' disable-zoom seamless-poster loading="eager" src="${htmlEscape.convert(src)}" clothes="$clothes" animation-name="$animationName"');
+    html.write(' disable-zoom src="${htmlEscape.convert(src)}" clothes="$clothes" animation-name="$animationName"');
     html.write(
         ' style="background-color: transparent; outline: none; width: 100%; height: 100%; --poster-color: transparent; --progress-bar-height: 0px"');
     if (alt != null) {
