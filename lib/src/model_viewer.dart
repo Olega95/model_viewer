@@ -192,7 +192,7 @@ class _ModelViewerState extends State<ModelViewer> {
         // } catch (error) {
         //   print('>>>> ModelViewer failed to launch AR: $error'); // DEBUG
         // }
-        return NavigationActionPolicy.CANCEL;
+        return NavigationActionPolicy.ALLOW;
       },
       onLoadStart: (controller, url) {
         print('>>>> ModelViewer began loading: <$url>'); // DEBUG
