@@ -169,7 +169,7 @@ class _ModelViewerState extends State<ModelViewer> {
       },
       shouldOverrideUrlLoading: (controller, navigation) async {
         print(navigation);
-        if (!Platform.isAndroid) {
+        if (Platform.isAndroid || Platform.isIOS) {
           return NavigationActionPolicy.ALLOW;
         }
         if (!navigation.request.url!.isScheme('INTENT')) {
