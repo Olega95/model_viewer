@@ -167,6 +167,10 @@ class _ModelViewerState extends State<ModelViewer> {
 //         await webViewController.scrollTo(100, 100);
         widget.onCreated!(webViewController);
       },
+      onReceivedServerTrustAuthRequest: (controller, challenge) async {
+         print(challenge);
+         return ServerTrustAuthResponse(action: ServerTrustAuthResponseAction.PROCEED);
+      },
       shouldOverrideUrlLoading: (controller, navigation) async {
         print(navigation);
         if (Platform.isAndroid || Platform.isIOS) {
