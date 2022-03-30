@@ -27,6 +27,7 @@ class ModelViewer extends StatefulWidget {
       this.autoRotate,
       this.onCreated,
       this.onPageFinished,
+      this.onLoad,
       this.autoRotateDelay,
       this.autoPlay,
       this.cameraControls,
@@ -54,6 +55,7 @@ class ModelViewer extends StatefulWidget {
 
   final Function(InAppWebViewController)? onCreated;
   final Function(String?)? onPageFinished;
+  final Function(bool)? onLoad;
   
   final String? poster;
   
@@ -168,7 +170,7 @@ class _ModelViewerState extends State<ModelViewer> {
         widget.onCreated!(webViewController);
       },
       onConsoleMessage: (controller, consoleMessage) {
-        print(consoleMessage.message);
+        widget.onLoad(consoleMessage == 'Model was loaded' ? true : false)
       },
       onReceivedServerTrustAuthRequest: (controller, challenge) async {
          print(challenge);
