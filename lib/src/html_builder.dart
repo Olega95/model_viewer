@@ -32,7 +32,7 @@ abstract class HTMLBuilder {
     html.write(
         '<script src="https://unpkg.com/focus-visible@5.1.0/dist/focus-visible.js"></script>');
     html.write('<body>');
-    html.write('<script>document.querySelector("model-viewer").onload = function(ev) {alert("Model was loaded")};</script>');
+    html.write('<script>document.querySelector("model-viewer").onload = function(ev) {console.log("Model was loaded")};</script>');
     html.write('<model-viewer');
     html.write(' disable-zoom src="${htmlEscape.convert(src)}" clothes="$clothes" animation-name="$animationName"');
     html.write(
