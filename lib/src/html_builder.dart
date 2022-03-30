@@ -31,8 +31,9 @@ abstract class HTMLBuilder {
     final html = StringBuffer(htmlTemplate);
     html.write(
         '<script src="https://unpkg.com/focus-visible@5.1.0/dist/focus-visible.js"></script>');
-    html.write(
-        '<body><model-viewer');
+    html.write('<body>');
+    html.write('<script>document.querySelector("model-viewer").onload = function(ev) {alert("Model was loaded")};</script');
+    html.write('<model-viewer');
     html.write(' disable-zoom src="${htmlEscape.convert(src)}" clothes="$clothes" animation-name="$animationName"');
     html.write(
         ' style="background-color: transparent; outline: none; width: 100%; height: 100%; --poster-color: transparent; --progress-bar-height: 0px"');
