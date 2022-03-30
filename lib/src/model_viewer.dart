@@ -170,7 +170,7 @@ class _ModelViewerState extends State<ModelViewer> {
         widget.onCreated!(webViewController);
       },
       onConsoleMessage: (controller, consoleMessage) {
-        widget.onLoad(consoleMessage == 'Model was loaded' ? true : false)
+        widget.onLoad!(consoleMessage == 'Model was loaded' ? true : false);
       },
       onReceivedServerTrustAuthRequest: (controller, challenge) async {
          print(challenge);
