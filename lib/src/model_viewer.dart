@@ -120,7 +120,7 @@ class ModelViewer extends StatefulWidget {
   State<ModelViewer> createState() => _ModelViewerState();
 }
 
-class _ModelViewerState extends State<ModelViewer> {
+class _ModelViewerState extends State<ModelViewer> with AutomaticKeepAliveClientMixin<ModelViewer>{
   final Completer<InAppWebViewController> _controller =
       Completer<InAppWebViewController>();
 
@@ -314,4 +314,7 @@ class _ModelViewerState extends State<ModelViewer> {
   Future<Uint8List> _readFile(final String path) async {
     return await File(path).readAsBytes();
   }
+    
+  @override
+  bool get wantKeepAlive => true;
 }
