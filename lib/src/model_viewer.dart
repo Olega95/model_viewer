@@ -150,7 +150,6 @@ class _ModelViewerState extends State<ModelViewer>{
 
   @override
   Widget build(final BuildContext context) {
-    super.build(context);
     return InAppWebView(
         key: widget.key,
       onWebViewCreated: (final InAppWebViewController webViewController) async {
