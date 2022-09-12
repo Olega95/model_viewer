@@ -23,6 +23,7 @@ class ModelViewer extends StatefulWidget {
       this.alt,
       this.ar,
       this.arModes,
+      this.exposure,
       this.arScale,
       this.autoRotate,
       this.onCreated,
@@ -52,6 +53,8 @@ class ModelViewer extends StatefulWidget {
   final List<Color>? gradient;
     
   final Key? key;
+    
+  final double? exposure;
 
   final Function(InAppWebViewController)? onCreated;
   final Function(String?)? onPageFinished;
@@ -228,6 +231,7 @@ class _ModelViewerState extends State<ModelViewer>{
         src: '/model',
         alt: widget.alt,
         ar: widget.ar,
+        exposure: widget.exposure,
         arModes: widget.arModes,
         arScale: widget.arScale,
         autoRotate: widget.autoRotate,
