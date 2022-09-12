@@ -57,6 +57,7 @@ abstract class HTMLBuilder {
     }
     if (exposure!= null) {
       html.write(' exposure="$exposure"');
+    }
     if (autoRotateDelay != null) {
       html.write(' auto-rotate-delay="$autoRotateDelay"');
     }
