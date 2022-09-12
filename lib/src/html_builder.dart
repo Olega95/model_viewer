@@ -17,6 +17,7 @@ abstract class HTMLBuilder {
       final bool? ar,
       final List<String>? arModes,
       final String? arScale,
+      final double? exposure,
       final bool? autoRotate,
       final int? autoRotateDelay,
       final bool? autoPlay,
@@ -54,6 +55,8 @@ abstract class HTMLBuilder {
     if (autoRotate ?? false) {
       html.write(' auto-rotate');
     }
+    if (exposure!= null) {
+      html.write(' exposure="${widget.exposure}"');
     if (autoRotateDelay != null) {
       html.write(' auto-rotate-delay="$autoRotateDelay"');
     }
