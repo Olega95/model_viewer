@@ -56,7 +56,7 @@ abstract class HTMLBuilder {
       html.write(' auto-rotate');
     }
     if (exposure!= null) {
-      html.write(' exposure="${widget.exposure}"');
+      html.write(' exposure="$exposure"');
     if (autoRotateDelay != null) {
       html.write(' auto-rotate-delay="$autoRotateDelay"');
     }
